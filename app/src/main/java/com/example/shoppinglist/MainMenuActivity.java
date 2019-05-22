@@ -31,7 +31,7 @@ public class MainMenuActivity extends AppCompatActivity {
     //SharedPreferences preferences;
     final private static String PREFS_NAME = "PreferencesFile";
     final private static String MYASCII = "1234567890abcdefghijklmnopqrstuvwxyz";
-    final private static String SERVER = "http://delphi.cs.csub.edu/~ahernand/";
+    final private static String SERVER = "your server url http://.../";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

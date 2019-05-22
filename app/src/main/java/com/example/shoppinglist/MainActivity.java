@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     final private static int CHECK = 2000;
     final private static String PREFS_NAME = "PreferencesFile";
     private String tablename = "";
-    final private static String SERVER = "http://delphi.cs.csub.edu/~ahernand/";
+    final private static String SERVER = "your server urL http://.../";
     List<ListItem> mlist;
     boolean backgroundtask;
     boolean wehavecheckboxesselected = false;
