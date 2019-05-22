@@ -1,67 +1,54 @@
 package com.example.shoppinglist;
 
 import android.content.Context;
+
+import android.graphics.Paint;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class ItemListAdapter extends BaseAdapter {
+public class ItemListAdapter extends ArrayAdapter<ListItem> {
+    private int layoutresource;
+    private Context ctx;
     private List<ListItem> mylist = null;
-    private Context context = null;
-    public ItemListAdapter(Context c, List<ListItem> list){
-        this.context = c;
-        this.mylist = list;
-    }
-    @Override
-    public int getCount() {
-        if(mylist != null){
-            return mylist.size();
-        }
-        return 0;
-    }
 
-    @Override
-    public Object getItem(int position) {
-        Object obj = null;
-        if(mylist!= null){
-            obj = mylist.get(position);
-        }
-        return obj;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+    public ItemListAdapter(Context context, int resource, List<ListItem> objects) {
+        super(context, resource, objects);
+        this.ctx = context;
+        this.mylist = objects;
+        this.layoutresource = resource;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ItemListView itemlistview = null;
-        if(convertView != null){//might need to change to == null and then get infale from r.layout.item_layout
-            itemlistview = (ItemListView) convertView.getTag();
+        if(convertView == null){
+            convertView = LayoutInflater.from(ctx).inflate(layoutresource,parent,false);
         }
-        else{
-            convertView = View.inflate(context, R.layout.item_layout, null);//
-            //itemlistview = new ItemListView(convertView);
-            CheckBox listitemcb = (CheckBox) convertView.findViewById(R.id.checkboxname);
-            TextView listitemtext = (TextView) convertView.findViewById(R.id.itemname);
-            itemlistview = new ItemListView(convertView);
-            itemlistview.setItemcheckbox(listitemcb);
-            itemlistview.setItemtextview(listitemtext);
-            convertView.setTag(itemlistview);
-        }
-        //set checkbox
-        //set text
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imagev);
+        TextView listitemtext = (TextView) convertView.findViewById(R.id.itemname);
+        itemlistview = new ItemListView(convertView);
+        itemlistview.setItemtextview(listitemtext);
         ListItem mitem = mylist.get(position);
-        itemlistview.getItemcheckbox().setChecked((mitem.isChecked()));
+        if(mitem.isChecked()){
+            imageView.setImageResource(R.drawable.btn_check_on);
+
+        }else{
+            imageView.setImageResource(R.drawable.btn_circle_normal);
+
+        }
+        if(mitem.isStrikethrough()){
+            listitemtext.setPaintFlags(listitemtext.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }else{
+            listitemtext.setPaintFlags(0);
+        }
         itemlistview.getItemtextview().setText(mitem.getItemtext());
         return convertView;
-        //return null;
+
     }
 }
