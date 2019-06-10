@@ -6,7 +6,7 @@ It is able to send and receive data to php sever using JSONObject.
 UI uses ListView with custom adapter to display an image.
 ### Built With
 com.android.volley:volley:1.1.1  
-Android Version: 3.4.1
+Android Studio Version: 3.4.1
 ### Author:
 Alejandro Hernandez
 ### License: 
