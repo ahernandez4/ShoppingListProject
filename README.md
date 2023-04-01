@@ -3,6 +3,7 @@ A school project
 ## Goal: 
 An Android app. It allows a user to create a shopping list. 
 It is able to send and receive data to php sever using JSONObject. 
+I needed this as a way to store data in a database
 UI uses ListView with custom adapter to display an image.
 ### Built With
 com.android.volley:volley:1.1.1  
